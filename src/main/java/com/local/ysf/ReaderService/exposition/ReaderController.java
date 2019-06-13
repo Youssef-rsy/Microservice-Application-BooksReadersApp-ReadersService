@@ -23,7 +23,7 @@ import com.local.ysf.ReaderService.service.ReadersService;
 
 @RestController
 @RequestMapping(value="/reader")
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 public class ReaderController {
 
 	@Autowired
