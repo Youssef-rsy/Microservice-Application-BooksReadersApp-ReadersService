@@ -21,48 +21,74 @@ import com.local.ysf.ReaderService.Model.Book;
 import com.local.ysf.ReaderService.exposition.external.BookServiceProxy;
 import com.local.ysf.ReaderService.service.ReadersService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+/**
+ * @author YOUSSEF ROSSAMY
+ *
+ */
 @RestController
 @RequestMapping(value="/reader")
 @CrossOrigin(origins="*")
 public class ReaderController {
 
+	/**
+	 * readerService :ReadersService
+	 */
 	@Autowired
 	private ReadersService readerService;
 	
+	/**
+	 * myproxy :BookServiceProxy
+	 */
 	@Autowired
 	private BookServiceProxy myproxy;
 	
 	@PostMapping(value="")
+	@ApiOperation(value = "Add New Reader")
+	@ApiResponses( value= {
+			@ApiResponse(code=201, message = "")
+	})
+
 	public void addReader(@RequestBody Reader reader){
 		readerService.saveReader(reader);
 	}
 	
 	@GetMapping(value="/{readerId}")
+	@ApiOperation(value="Get Reader Data By ReaderId")
 	public Reader getReaderById(@PathVariable UUID readerId){
 		return readerService.getReader(readerId);
 	}
 
 	@GetMapping(value="")
+	@ApiOperation(value="retrieve  All Readers Data ")
 	public List<Reader> getAllReader(){
 		return readerService.getAllReader();
 	}
 	
 	@PutMapping(value="/{readerId}")
+	@ApiOperation(value="update Reader Information")
 	public Reader updateReader(@PathVariable UUID readerId ,@RequestBody Reader reader){
 		return readerService.updateReader(readerId, reader);
 	}
 	
 	@DeleteMapping(value="/{readerId}")
+	@ApiOperation(value="Delete Reader Information")
 	public void deleteReader(@PathVariable UUID readerId){
 		 readerService.deleteReader(readerId);
 	}
 	
 	@GetMapping(value="/book/{title}")
-	public Book getBokkInformation(@PathVariable(name="title") String title ){
+	@ApiOperation(value="Get Information of one of the Book That have been reader by the reader")
+	public Book getBookInformation(@PathVariable(name="title") String title ){
 		Book book = myproxy.getBookByTitle(title);
 		return book;
 	}
 	@GetMapping(value="/book/author/{author}")
+	@ApiOperation(value="Get All book written by the Autor ")
 	public List<Book> getutorABook(@PathVariable(name="author") String author ){
 		List<Book> books = myproxy.findAllBooksByAuthor(author);
 		return books;

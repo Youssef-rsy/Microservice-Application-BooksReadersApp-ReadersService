@@ -2,6 +2,7 @@ package com.local.ysf.ReaderService.service.dataSeed;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
@@ -29,7 +30,7 @@ public class dataSeed {
 				listOfBook.add(faker.book().title());
 			}
 			 
-			readerService.saveReader(new Reader(null, faker.name().firstName(), faker.name().firstName(), listOfBook));
+			readerService.saveReader(new Reader(null,faker.name().firstName(), faker.name().firstName(), listOfBook));
 		}
 	}
 }
