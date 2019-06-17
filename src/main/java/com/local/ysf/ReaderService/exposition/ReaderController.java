@@ -22,7 +22,6 @@ import com.local.ysf.ReaderService.exposition.external.BookServiceProxy;
 import com.local.ysf.ReaderService.service.ReadersService;
 
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -32,7 +31,7 @@ import io.swagger.annotations.ApiResponses;
  */
 @RestController
 @RequestMapping(value="/reader")
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 public class ReaderController {
 
 	/**
